@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "message": "Bread of life.",
+    "lucky_number": "8",
+    "spirit_animal": "Lion"
+  },
+  {
+    "id": 2,
+    "message": "Everything starts with dough.",
+    "lucky_number": "7",
+    "spirit_animal": "Snake"
+  },
+  {
+    "id": 3,
+    "message": "To bake or not to bake.",
+    "lucky_number": "3",
+    "spirit_animal": "Eagle"
+  }
+]
