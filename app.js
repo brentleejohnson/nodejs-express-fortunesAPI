@@ -48,19 +48,39 @@ app.post("/fortunes", (req, res) => {
 // UPDATE
 app.put("/fortunes/:id", (req, res) => {
   const { id } = req.params;
-  const { message, lucky_number, spirit_animal } = req.body;
 
   const old_fortune = fortunes.find((f) => f.id == id);
 
-  if (message) old_fortune.message = message;
-  if (lucky_number) old_fortune.lucky_number = lucky_number;
-  if (spirit_animal) old_fortune.spirit_animal = spirit_animal;
+  // if (message) old_fortune.message = message;
+  // if (lucky_number) old_fortune.lucky_number = lucky_number;
+  // if (spirit_animal) old_fortune.spirit_animal = spirit_animal;
+
+  ["message", "lucky_number", "spirit_animal"].forEach((key) => {
+    if (req.body[key]) old_fortune[key] = req.body[key];
+  });
 
   fs.writeFile("./data/fortunes.json", JSON.stringify(fortunes), (err) =>
     console.log(err)
   );
 
+  // writeFortunes(fortunes);
+
   res.json(fortunes);
+});
+
+// DELETE METHOD
+app.delete("/fortunes/:id", (req, res) => {
+  const { id } = req.params;
+
+  const new_fortunes = fortunes.filter((f) => f.id != id);
+
+  // writeFortunes(new_fortunes);
+
+  fs.writeFile("./data/fortunes.json", JSON.stringify(new_fortunes), (err) =>
+    console.log(err)
+  );
+
+  res.json(new_fortunes);
 });
 
 module.exports = app;
